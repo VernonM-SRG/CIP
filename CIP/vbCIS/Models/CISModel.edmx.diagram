@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ec147cb149374c8f8c356c4b632e8abe" Name="Diagram1">
+        <EntityTypeShape EntityType="CISModel.AuditTrail" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISModel.InsuranceCompany" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISModel.Quote" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISModel.QuoteDetail" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISModel.QuoteStatusCode" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISModel.QuoteStatusMap" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISModel.RecordStatusCode" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISModel.SRGBrand" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <AssociationConnector Association="CISModel.FK__AuditTrai__Recor__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__Insurance__Recor__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__Quote__Insurance__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__Quote__RecordSta__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__QuoteDeta__Quote__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__QuoteDeta__Recor__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__QuoteStat__Quote__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__QuoteStat__Recor__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__QuoteStat__Recor__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="CISModel.FK__SRGBrand__Record__2C3393D0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

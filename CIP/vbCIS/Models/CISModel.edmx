@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CISModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuditTrail">
+          <Key>
+            <PropertyRef Name="AuditTrailID" />
+          </Key>
+          <Property Name="AuditTrailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ColumnName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="BeforeValue" Type="text" />
+          <Property Name="AfterValue" Type="text" />
+          <Property Name="Details" Type="text" />
+          <Property Name="RemoteObjectPrimaryKeyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="InsuranceCompanyID" />
+          </Key>
+          <Property Name="InsuranceCompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Shortname" Type="varchar" MaxLength="20" />
+          <Property Name="Address1" Type="varchar" MaxLength="255" />
+          <Property Name="Address2" Type="varchar" MaxLength="255" />
+          <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="Postcode" Type="varchar" MaxLength="45" />
+          <Property Name="Phone" Type="varchar" MaxLength="45" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="RecordStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+          <Property Name="ParentInsuranceCompanyID" Type="int" Nullable="false" />
+          <Property Name="CreditLimit" Type="text" />
+          <Property Name="StandardDiscount" Type="float" Nullable="false" />
+          <Property Name="ReportingCommitments" Type="text" />
+          <Property Name="BrandAssociations" Type="text" />
+          <Property Name="GiftCardLetter" Type="text" />
+          <Property Name="LetterHeads" Type="text" />
+          <Property Name="Notes" Type="text" />
+        </EntityType>
+        <EntityType Name="Quote">
+          <Key>
+            <PropertyRef Name="QuoteID" />
+          </Key>
+          <Property Name="QuoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsuranceCompanyID" Type="int" Nullable="false" />
+          <Property Name="ClaimNum" Type="varchar" MaxLength="255" />
+          <Property Name="StoreIDs" Type="text" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerAddress1" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerAddress2" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerCity" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerState" Type="varchar" MaxLength="20" />
+          <Property Name="CustomerPostcode" Type="varchar" MaxLength="20" />
+          <Property Name="CustomerPhone" Type="varchar" MaxLength="20" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerDateOfBirth" Type="date" />
+          <Property Name="NextOfKinName" Type="varchar" MaxLength="255" />
+          <Property Name="NextOfKinAddress1" Type="varchar" MaxLength="255" />
+          <Property Name="NextOfKinAddress2" Type="varchar" MaxLength="255" />
+          <Property Name="NextOfKinCity" Type="varchar" MaxLength="255" />
+          <Property Name="NextOfKinState" Type="varchar" MaxLength="20" />
+          <Property Name="NextOfKinPostcode" Type="varchar" MaxLength="20" />
+          <Property Name="NextOfKinPhone" Type="varchar" MaxLength="20" />
+          <Property Name="NextOfKinEmail" Type="varchar" MaxLength="255" />
+          <Property Name="NextOfKinDateOfBirth" Type="date" />
+          <Property Name="CustomerContactAllowed" Type="bit" />
+          <Property Name="PolicyLimit" Type="float" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="QuotePriority" Type="text" />
+          <Property Name="TeamMemberResponsible" Type="varchar" MaxLength="255" />
+          <Property Name="Notes" Type="text" />
+          <Property Name="FulfilmentMethod" Type="text" />
+          <Property Name="FulfilmentType" Type="text" />
+          <Property Name="PreferredBrands" Type="text" />
+          <Property Name="ClosestStores" Type="text" />
+        </EntityType>
+        <EntityType Name="QuoteDetail">
+          <Key>
+            <PropertyRef Name="QuoteDetailID" />
+          </Key>
+          <Property Name="QuoteDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuoteID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="InsurerDescription" Type="varchar" MaxLength="255" />
+          <Property Name="OtherInformation" Type="varchar" MaxLength="255" />
+          <Property Name="PLU" Type="varchar" MaxLength="20" />
+          <Property Name="PLUDescription" Type="varchar" MaxLength="255" />
+          <Property Name="PLUQuantity" Type="int" />
+          <Property Name="PLUPrice" Type="float" />
+          <Property Name="DiscountApplied" Type="float" />
+          <Property Name="SRGBrandSupplying" Type="varchar" MaxLength="255" />
+          <Property Name="SRGStoreSupplying" Type="text" />
+          <Property Name="Comments" Type="varchar" MaxLength="255" />
+          <Property Name="Specialorder" Type="bit" />
+          <Property Name="Isapproved" Type="bit" />
+        </EntityType>
+        <EntityType Name="QuoteStatusCode">
+          <Key>
+            <PropertyRef Name="QuoteStatusCodeID" />
+          </Key>
+          <Property Name="QuoteStatusCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuoteStatusMap">
+          <Key>
+            <PropertyRef Name="QuoteStatusMapID" />
+          </Key>
+          <Property Name="QuoteStatusMapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuoteStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="NextQuoteStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecordStatusCode">
+          <Key>
+            <PropertyRef Name="RecordStatusCodeID" />
+          </Key>
+          <Property Name="RecordStatusCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MyRecordStatusID" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SRGBrand">
+          <Key>
+            <PropertyRef Name="SRGBrandID" />
+          </Key>
+          <Property Name="SRGBrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Shortname" Type="varchar" MaxLength="20" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AuditTrai__Recor__267ABA7A">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Insurance__Recor__33D4B598">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="InsuranceCompany">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quote__Insurance__3F466844">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="1" />
+          <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="InsuranceCompanyID" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="InsuranceCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quote__RecordSta__3E52440B">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteDeta__Quote__4F7CD00D">
+          <End Role="Quote" Type="Self.Quote" Multiplicity="1" />
+          <End Role="QuoteDetail" Type="Self.QuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quote">
+              <PropertyRef Name="QuoteID" />
+            </Principal>
+            <Dependent Role="QuoteDetail">
+              <PropertyRef Name="QuoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteDeta__Recor__4E88ABD4">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="QuoteDetail" Type="Self.QuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteDetail">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteStat__Quote__1ED998B2">
+          <End Role="QuoteStatusCode" Type="Self.QuoteStatusCode" Multiplicity="1" />
+          <End Role="QuoteStatusMap" Type="Self.QuoteStatusMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuoteStatusCode">
+              <PropertyRef Name="QuoteStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteStatusMap">
+              <PropertyRef Name="QuoteStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteStat__Recor__182C9B23">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="QuoteStatusCode" Type="Self.QuoteStatusCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteStat__Recor__1DE57479">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="QuoteStatusMap" Type="Self.QuoteStatusMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteStatusMap">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SRGBrand__Record__2C3393D0">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="SRGBrand" Type="Self.SRGBrand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="SRGBrand">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CISModelStoreContainer">
+          <EntitySet Name="AuditTrail" EntityType="Self.AuditTrail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceCompany" EntityType="Self.InsuranceCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quote" EntityType="Self.Quote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuoteDetail" EntityType="Self.QuoteDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuoteStatusCode" EntityType="Self.QuoteStatusCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuoteStatusMap" EntityType="Self.QuoteStatusMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecordStatusCode" EntityType="Self.RecordStatusCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SRGBrand" EntityType="Self.SRGBrand" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AuditTrai__Recor__267ABA7A" Association="Self.FK__AuditTrai__Recor__267ABA7A">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCode" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Insurance__Recor__33D4B598" Association="Self.FK__Insurance__Recor__33D4B598">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCode" />
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quote__Insurance__3F466844" Association="Self.FK__Quote__Insurance__3F466844">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+            <End Role="Quote" EntitySet="Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quote__RecordSta__3E52440B" Association="Self.FK__Quote__RecordSta__3E52440B">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCode" />
+            <End Role="Quote" EntitySet="Quote" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteDeta__Quote__4F7CD00D" Association="Self.FK__QuoteDeta__Quote__4F7CD00D">
+            <End Role="Quote" EntitySet="Quote" />
+            <End Role="QuoteDetail" EntitySet="QuoteDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteDeta__Recor__4E88ABD4" Association="Self.FK__QuoteDeta__Recor__4E88ABD4">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCode" />
+            <End Role="QuoteDetail" EntitySet="QuoteDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteStat__Quote__1ED998B2" Association="Self.FK__QuoteStat__Quote__1ED998B2">
+            <End Role="QuoteStatusCode" EntitySet="QuoteStatusCode" />
+            <End Role="QuoteStatusMap" EntitySet="QuoteStatusMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteStat__Recor__182C9B23" Association="Self.FK__QuoteStat__Recor__182C9B23">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCode" />
+            <End Role="QuoteStatusCode" EntitySet="QuoteStatusCode" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteStat__Recor__1DE57479" Association="Self.FK__QuoteStat__Recor__1DE57479">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCode" />
+            <End Role="QuoteStatusMap" EntitySet="QuoteStatusMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SRGBrand__Record__2C3393D0" Association="Self.FK__SRGBrand__Record__2C3393D0">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCode" />
+            <End Role="SRGBrand" EntitySet="SRGBrand" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AuditTrail">
+          <Key>
+            <PropertyRef Name="AuditTrailID" />
+          </Key>
+          <Property Name="AuditTrailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ColumnName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BeforeValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AfterValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RemoteObjectPrimaryKeyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RecordStatusCode" Relationship="Self.FK__AuditTrai__Recor__267ABA7A" FromRole="AuditTrail" ToRole="RecordStatusCode" />
+        </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="InsuranceCompanyID" />
+          </Key>
+          <Property Name="InsuranceCompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Shortname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ParentInsuranceCompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CreditLimit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StandardDiscount" Type="Double" Nullable="false" />
+          <Property Name="ReportingCommitments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BrandAssociations" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GiftCardLetter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LetterHeads" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RecordStatusCode" Relationship="Self.FK__Insurance__Recor__33D4B598" FromRole="InsuranceCompany" ToRole="RecordStatusCode" />
+          <NavigationProperty Name="Quotes" Relationship="Self.FK__Quote__Insurance__3F466844" FromRole="InsuranceCompany" ToRole="Quote" />
+        </EntityType>
+        <EntityType Name="Quote">
+          <Key>
+            <PropertyRef Name="QuoteID" />
+          </Key>
+          <Property Name="QuoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsuranceCompanyID" Type="Int32" Nullable="false" />
+          <Property Name="ClaimNum" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="StoreIDs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPostcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerDateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="NextOfKinName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinAddress1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinAddress2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinPostcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NextOfKinDateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="CustomerContactAllowed" Type="Boolean" />
+          <Property Name="PolicyLimit" Type="Double" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="QuotePriority" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TeamMemberResponsible" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FulfilmentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FulfilmentType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PreferredBrands" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClosestStores" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="InsuranceCompany" Relationship="Self.FK__Quote__Insurance__3F466844" FromRole="Quote" ToRole="InsuranceCompany" />
+          <NavigationProperty Name="RecordStatusCode" Relationship="Self.FK__Quote__RecordSta__3E52440B" FromRole="Quote" ToRole="RecordStatusCode" />
+          <NavigationProperty Name="QuoteDetails" Relationship="Self.FK__QuoteDeta__Quote__4F7CD00D" FromRole="Quote" ToRole="QuoteDetail" />
+        </EntityType>
+        <EntityType Name="QuoteDetail">
+          <Key>
+            <PropertyRef Name="QuoteDetailID" />
+          </Key>
+          <Property Name="QuoteDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuoteID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="InsurerDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OtherInformation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PLU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PLUDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PLUQuantity" Type="Int32" />
+          <Property Name="PLUPrice" Type="Double" />
+          <Property Name="DiscountApplied" Type="Double" />
+          <Property Name="SRGBrandSupplying" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SRGStoreSupplying" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Specialorder" Type="Boolean" />
+          <Property Name="Isapproved" Type="Boolean" />
+          <NavigationProperty Name="Quote" Relationship="Self.FK__QuoteDeta__Quote__4F7CD00D" FromRole="QuoteDetail" ToRole="Quote" />
+          <NavigationProperty Name="RecordStatusCode" Relationship="Self.FK__QuoteDeta__Recor__4E88ABD4" FromRole="QuoteDetail" ToRole="RecordStatusCode" />
+        </EntityType>
+        <EntityType Name="QuoteStatusCode">
+          <Key>
+            <PropertyRef Name="QuoteStatusCodeID" />
+          </Key>
+          <Property Name="QuoteStatusCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="QuoteStatusMaps" Relationship="Self.FK__QuoteStat__Quote__1ED998B2" FromRole="QuoteStatusCode" ToRole="QuoteStatusMap" />
+          <NavigationProperty Name="RecordStatusCode" Relationship="Self.FK__QuoteStat__Recor__182C9B23" FromRole="QuoteStatusCode" ToRole="RecordStatusCode" />
+        </EntityType>
+        <EntityType Name="QuoteStatusMap">
+          <Key>
+            <PropertyRef Name="QuoteStatusMapID" />
+          </Key>
+          <Property Name="QuoteStatusMapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuoteStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="NextQuoteStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="QuoteStatusCode" Relationship="Self.FK__QuoteStat__Quote__1ED998B2" FromRole="QuoteStatusMap" ToRole="QuoteStatusCode" />
+          <NavigationProperty Name="RecordStatusCode" Relationship="Self.FK__QuoteStat__Recor__1DE57479" FromRole="QuoteStatusMap" ToRole="RecordStatusCode" />
+        </EntityType>
+        <EntityType Name="RecordStatusCode">
+          <Key>
+            <PropertyRef Name="RecordStatusCodeID" />
+          </Key>
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MyRecordStatusID" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AuditTrails" Relationship="Self.FK__AuditTrai__Recor__267ABA7A" FromRole="RecordStatusCode" ToRole="AuditTrail" />
+          <NavigationProperty Name="InsuranceCompanies" Relationship="Self.FK__Insurance__Recor__33D4B598" FromRole="RecordStatusCode" ToRole="InsuranceCompany" />
+          <NavigationProperty Name="Quotes" Relationship="Self.FK__Quote__RecordSta__3E52440B" FromRole="RecordStatusCode" ToRole="Quote" />
+          <NavigationProperty Name="QuoteDetails" Relationship="Self.FK__QuoteDeta__Recor__4E88ABD4" FromRole="RecordStatusCode" ToRole="QuoteDetail" />
+          <NavigationProperty Name="QuoteStatusCodes" Relationship="Self.FK__QuoteStat__Recor__182C9B23" FromRole="RecordStatusCode" ToRole="QuoteStatusCode" />
+          <NavigationProperty Name="QuoteStatusMaps" Relationship="Self.FK__QuoteStat__Recor__1DE57479" FromRole="RecordStatusCode" ToRole="QuoteStatusMap" />
+          <NavigationProperty Name="SRGBrands" Relationship="Self.FK__SRGBrand__Record__2C3393D0" FromRole="RecordStatusCode" ToRole="SRGBrand" />
+        </EntityType>
+        <EntityType Name="SRGBrand">
+          <Key>
+            <PropertyRef Name="SRGBrandID" />
+          </Key>
+          <Property Name="SRGBrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Shortname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordStatusCodeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RecordStatusCode" Relationship="Self.FK__SRGBrand__Record__2C3393D0" FromRole="SRGBrand" ToRole="RecordStatusCode" />
+        </EntityType>
+        <Association Name="FK__AuditTrai__Recor__267ABA7A">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Insurance__Recor__33D4B598">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="InsuranceCompany">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quote__Insurance__3F466844">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="1" />
+          <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="InsuranceCompanyID" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="InsuranceCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Quote__RecordSta__3E52440B">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="Quote" Type="Self.Quote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="Quote">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteDeta__Quote__4F7CD00D">
+          <End Role="Quote" Type="Self.Quote" Multiplicity="1" />
+          <End Role="QuoteDetail" Type="Self.QuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quote">
+              <PropertyRef Name="QuoteID" />
+            </Principal>
+            <Dependent Role="QuoteDetail">
+              <PropertyRef Name="QuoteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteDeta__Recor__4E88ABD4">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="QuoteDetail" Type="Self.QuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteDetail">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteStat__Quote__1ED998B2">
+          <End Role="QuoteStatusCode" Type="Self.QuoteStatusCode" Multiplicity="1" />
+          <End Role="QuoteStatusMap" Type="Self.QuoteStatusMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuoteStatusCode">
+              <PropertyRef Name="QuoteStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteStatusMap">
+              <PropertyRef Name="QuoteStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteStat__Recor__182C9B23">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="QuoteStatusCode" Type="Self.QuoteStatusCode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuoteStat__Recor__1DE57479">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="QuoteStatusMap" Type="Self.QuoteStatusMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="QuoteStatusMap">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SRGBrand__Record__2C3393D0">
+          <End Role="RecordStatusCode" Type="Self.RecordStatusCode" Multiplicity="1" />
+          <End Role="SRGBrand" Type="Self.SRGBrand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecordStatusCode">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Principal>
+            <Dependent Role="SRGBrand">
+              <PropertyRef Name="RecordStatusCodeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CISEntitiesA" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuditTrails" EntityType="Self.AuditTrail" />
+          <EntitySet Name="InsuranceCompanies" EntityType="Self.InsuranceCompany" />
+          <EntitySet Name="Quotes" EntityType="Self.Quote" />
+          <EntitySet Name="QuoteDetails" EntityType="Self.QuoteDetail" />
+          <EntitySet Name="QuoteStatusCodes" EntityType="Self.QuoteStatusCode" />
+          <EntitySet Name="QuoteStatusMaps" EntityType="Self.QuoteStatusMap" />
+          <EntitySet Name="RecordStatusCodes" EntityType="Self.RecordStatusCode" />
+          <EntitySet Name="SRGBrands" EntityType="Self.SRGBrand" />
+          <AssociationSet Name="FK__AuditTrai__Recor__267ABA7A" Association="Self.FK__AuditTrai__Recor__267ABA7A">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCodes" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Insurance__Recor__33D4B598" Association="Self.FK__Insurance__Recor__33D4B598">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCodes" />
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quote__Insurance__3F466844" Association="Self.FK__Quote__Insurance__3F466844">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompanies" />
+            <End Role="Quote" EntitySet="Quotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Quote__RecordSta__3E52440B" Association="Self.FK__Quote__RecordSta__3E52440B">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCodes" />
+            <End Role="Quote" EntitySet="Quotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteDeta__Quote__4F7CD00D" Association="Self.FK__QuoteDeta__Quote__4F7CD00D">
+            <End Role="Quote" EntitySet="Quotes" />
+            <End Role="QuoteDetail" EntitySet="QuoteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteDeta__Recor__4E88ABD4" Association="Self.FK__QuoteDeta__Recor__4E88ABD4">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCodes" />
+            <End Role="QuoteDetail" EntitySet="QuoteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteStat__Quote__1ED998B2" Association="Self.FK__QuoteStat__Quote__1ED998B2">
+            <End Role="QuoteStatusCode" EntitySet="QuoteStatusCodes" />
+            <End Role="QuoteStatusMap" EntitySet="QuoteStatusMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteStat__Recor__182C9B23" Association="Self.FK__QuoteStat__Recor__182C9B23">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCodes" />
+            <End Role="QuoteStatusCode" EntitySet="QuoteStatusCodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuoteStat__Recor__1DE57479" Association="Self.FK__QuoteStat__Recor__1DE57479">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCodes" />
+            <End Role="QuoteStatusMap" EntitySet="QuoteStatusMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SRGBrand__Record__2C3393D0" Association="Self.FK__SRGBrand__Record__2C3393D0">
+            <End Role="RecordStatusCode" EntitySet="RecordStatusCodes" />
+            <End Role="SRGBrand" EntitySet="SRGBrands" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CISModelStoreContainer" CdmEntityContainer="CISEntitiesA">
+          <EntitySetMapping Name="AuditTrails">
+            <EntityTypeMapping TypeName="CISModel.AuditTrail">
+              <MappingFragment StoreEntitySet="AuditTrail">
+                <ScalarProperty Name="AuditTrailID" ColumnName="AuditTrailID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="BeforeValue" ColumnName="BeforeValue" />
+                <ScalarProperty Name="AfterValue" ColumnName="AfterValue" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="RemoteObjectPrimaryKeyID" ColumnName="RemoteObjectPrimaryKeyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceCompanies">
+            <EntityTypeMapping TypeName="CISModel.InsuranceCompany">
+              <MappingFragment StoreEntitySet="InsuranceCompany">
+                <ScalarProperty Name="InsuranceCompanyID" ColumnName="InsuranceCompanyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Shortname" ColumnName="Shortname" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ParentInsuranceCompanyID" ColumnName="ParentInsuranceCompanyID" />
+                <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+                <ScalarProperty Name="StandardDiscount" ColumnName="StandardDiscount" />
+                <ScalarProperty Name="ReportingCommitments" ColumnName="ReportingCommitments" />
+                <ScalarProperty Name="BrandAssociations" ColumnName="BrandAssociations" />
+                <ScalarProperty Name="GiftCardLetter" ColumnName="GiftCardLetter" />
+                <ScalarProperty Name="LetterHeads" ColumnName="LetterHeads" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quotes">
+            <EntityTypeMapping TypeName="CISModel.Quote">
+              <MappingFragment StoreEntitySet="Quote">
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="InsuranceCompanyID" ColumnName="InsuranceCompanyID" />
+                <ScalarProperty Name="ClaimNum" ColumnName="ClaimNum" />
+                <ScalarProperty Name="StoreIDs" ColumnName="StoreIDs" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerAddress1" ColumnName="CustomerAddress1" />
+                <ScalarProperty Name="CustomerAddress2" ColumnName="CustomerAddress2" />
+                <ScalarProperty Name="CustomerCity" ColumnName="CustomerCity" />
+                <ScalarProperty Name="CustomerState" ColumnName="CustomerState" />
+                <ScalarProperty Name="CustomerPostcode" ColumnName="CustomerPostcode" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerDateOfBirth" ColumnName="CustomerDateOfBirth" />
+                <ScalarProperty Name="NextOfKinName" ColumnName="NextOfKinName" />
+                <ScalarProperty Name="NextOfKinAddress1" ColumnName="NextOfKinAddress1" />
+                <ScalarProperty Name="NextOfKinAddress2" ColumnName="NextOfKinAddress2" />
+                <ScalarProperty Name="NextOfKinCity" ColumnName="NextOfKinCity" />
+                <ScalarProperty Name="NextOfKinState" ColumnName="NextOfKinState" />
+                <ScalarProperty Name="NextOfKinPostcode" ColumnName="NextOfKinPostcode" />
+                <ScalarProperty Name="NextOfKinPhone" ColumnName="NextOfKinPhone" />
+                <ScalarProperty Name="NextOfKinEmail" ColumnName="NextOfKinEmail" />
+                <ScalarProperty Name="NextOfKinDateOfBirth" ColumnName="NextOfKinDateOfBirth" />
+                <ScalarProperty Name="CustomerContactAllowed" ColumnName="CustomerContactAllowed" />
+                <ScalarProperty Name="PolicyLimit" ColumnName="PolicyLimit" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+                <ScalarProperty Name="QuotePriority" ColumnName="QuotePriority" />
+                <ScalarProperty Name="TeamMemberResponsible" ColumnName="TeamMemberResponsible" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="FulfilmentMethod" ColumnName="FulfilmentMethod" />
+                <ScalarProperty Name="FulfilmentType" ColumnName="FulfilmentType" />
+                <ScalarProperty Name="PreferredBrands" ColumnName="PreferredBrands" />
+                <ScalarProperty Name="ClosestStores" ColumnName="ClosestStores" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuoteDetails">
+            <EntityTypeMapping TypeName="CISModel.QuoteDetail">
+              <MappingFragment StoreEntitySet="QuoteDetail">
+                <ScalarProperty Name="QuoteDetailID" ColumnName="QuoteDetailID" />
+                <ScalarProperty Name="QuoteID" ColumnName="QuoteID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+                <ScalarProperty Name="InsurerDescription" ColumnName="InsurerDescription" />
+                <ScalarProperty Name="OtherInformation" ColumnName="OtherInformation" />
+                <ScalarProperty Name="PLU" ColumnName="PLU" />
+                <ScalarProperty Name="PLUDescription" ColumnName="PLUDescription" />
+                <ScalarProperty Name="PLUQuantity" ColumnName="PLUQuantity" />
+                <ScalarProperty Name="PLUPrice" ColumnName="PLUPrice" />
+                <ScalarProperty Name="DiscountApplied" ColumnName="DiscountApplied" />
+                <ScalarProperty Name="SRGBrandSupplying" ColumnName="SRGBrandSupplying" />
+                <ScalarProperty Name="SRGStoreSupplying" ColumnName="SRGStoreSupplying" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Specialorder" ColumnName="Specialorder" />
+                <ScalarProperty Name="Isapproved" ColumnName="Isapproved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuoteStatusCodes">
+            <EntityTypeMapping TypeName="CISModel.QuoteStatusCode">
+              <MappingFragment StoreEntitySet="QuoteStatusCode">
+                <ScalarProperty Name="QuoteStatusCodeID" ColumnName="QuoteStatusCodeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuoteStatusMaps">
+            <EntityTypeMapping TypeName="CISModel.QuoteStatusMap">
+              <MappingFragment StoreEntitySet="QuoteStatusMap">
+                <ScalarProperty Name="QuoteStatusMapID" ColumnName="QuoteStatusMapID" />
+                <ScalarProperty Name="QuoteStatusCodeID" ColumnName="QuoteStatusCodeID" />
+                <ScalarProperty Name="NextQuoteStatusCodeID" ColumnName="NextQuoteStatusCodeID" />
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecordStatusCodes">
+            <EntityTypeMapping TypeName="CISModel.RecordStatusCode">
+              <MappingFragment StoreEntitySet="RecordStatusCode">
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MyRecordStatusID" ColumnName="MyRecordStatusID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SRGBrands">
+            <EntityTypeMapping TypeName="CISModel.SRGBrand">
+              <MappingFragment StoreEntitySet="SRGBrand">
+                <ScalarProperty Name="SRGBrandID" ColumnName="SRGBrandID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Shortname" ColumnName="Shortname" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="RecordStatusCodeID" ColumnName="RecordStatusCodeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
